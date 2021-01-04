@@ -28,5 +28,4 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: |
-        npx apollo service:push --graph=${{secrets.APOLLO_GRAPH_NAME}} --key=${{secrets.APOLLO_KEY}} --variant=${{secrets.APOLLO_GRAPH_VARIANT}}
+      - run: npx apollo service:push --graph=${{secrets.APOLLO_GRAPH_NAME}} --key=${{secrets.APOLLO_KEY}} --variant=${{secrets.APOLLO_GRAPH_VARIANT}} --endpoint=${{secrets.APOLLO_GRAPH_ENDPOINT}}
