@@ -22,12 +22,11 @@ jobs:
         uses: cloudflare/wrangler-action@1.2.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          secrets: |
-            APOLLO_KEY
-            APOLLO_GRAPH_VARIANT
-            APOLLO_SCHEMA_REPORTING
         env:
           CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
-          APOLLO_KEY: ${{secrets.APOLLO_KEY}}
-          APOLLO_GRAPH_VARIANT: ${{secrets.APOLLO_GRAPH_VARIANT}}
-          APOLLO_SCHEMA_REPORTING: true
+      - name: Register schema
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: |
+        npx apollo service:push --graph=${{secrets.APOLLO_GRAPH_NAME}} --key=${{secrets.APOLLO_KEY}} --variant=${{secrets.APOLLO_GRAPH_VARIANT}}
